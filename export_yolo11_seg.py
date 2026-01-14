@@ -183,7 +183,11 @@ def main(args):
 
     if len(model.names.keys()) > 0:
         print("Creating labels.txt file")
-        with open("labels.txt", "w", encoding="utf-8") as f:
+        # Get the directory where the weights file is located
+        weights_dir = os.path.dirname(args.weights)
+        # Create the full path for labels.txt in that same directory
+        labels_path = os.path.join(weights_dir, "labels.txt")
+        with open(labels_path, "w", encoding="utf-8") as f:
             for name in model.names.values():
                 f.write(f"{name}\n")
 
